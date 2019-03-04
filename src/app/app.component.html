@@ -1,0 +1,12 @@
+<div>
+  <app-hero></app-hero>
+  <app-movie-list
+    (ListItemClick)="onListItemClicked($event)"
+  ></app-movie-list>
+  <app-movie-detail
+    (click)="hideMD()"
+    *ngIf="showMD"
+    [movie]="getMovie()"
+  ></app-movie-detail>
+</div>
+<router-outlet></router-outlet>

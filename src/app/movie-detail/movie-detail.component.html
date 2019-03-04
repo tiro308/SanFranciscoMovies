@@ -1,0 +1,13 @@
+<div class="mdparent">
+  <div class="pull-right note">Click to Close</div>
+  <ul class="mdbody">
+    <h2 >{{ movie.title}}</h2 >
+    <p>Year: {{ movie.release_year}}</p>
+    <p>Actors: {{ movie.actor_1}}{{ movie.actor_2 ?  ", " + movie.actor_2 : ''}} {{ movie.actor_3 ?  ", " + movie.actor_3 : ''}}</p>
+    <p>Director: {{ movie.director}}</p>
+    <p>Production: {{ movie.production_company}}</p>
+    <p>Writer: {{ movie.writer}}</p>
+    <hr>
+    <p class="location" *ngIf="movie.locations">Location: {{ movie.locations }}</p> 
+  </ul>
+</div>
