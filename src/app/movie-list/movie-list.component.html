@@ -1,15 +1,8 @@
 <div class="ml-parent">
   <div class="ml-search">
     <h4>Search the database for a specific movie</h4>
-    <form class="input-group" (ngSubmit)="fetchMoviesByName()">
+    <form class="input-group" (ngSubmit)="fetchMoviesByQuery()">
         <input type="text" class="form-control" name="input" [(ngModel)]="input" placeholder="enter something and hit return...">  
-        <span class="input-group-btn">
-            <button class="btn btn-default" value="Submit" type="submit">Go!</button>
-       </span>
-    </form>
-    <p class="or">...or</p>
-    <form class="input-group" (ngSubmit)="fetchMoviesByYear()">
-        <input type="text" class="form-control" name="inputYear" [(ngModel)]="inputYear" placeholder="search for movies by year...">
         <span class="input-group-btn">
             <button class="btn btn-default" value="Submit" type="submit">Go!</button>
        </span>
@@ -21,21 +14,27 @@
   </div>
   <div class="ml-list">
       <h3>Movie List</h3>
-      <table class="table table-hover tableFixHead">
-          <thead>
-            <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Year</th>
-              <th scope="col">Director</th>
-            </tr>
-          </thead>
-          <tbody class="" *ngFor="let movie of movies">
-            <tr (click)="onListItemClicked(movie)">
-              <td>{{ movie.title }}</td>
-              <td>{{ movie.release_year }}</td>
-              <td>{{ movie.director }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="year">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Year </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.release_year}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="director">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Director </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.director}} </mat-cell>
+        </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onListItemClicked(row)">
+        </mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
   </div>
 </div>
