@@ -1,4 +1,8 @@
+![image](https://github.com/tiro308/SanFranciscoMovies/blob/master/src/assets/ggbridge.jpg)
+
 # SanFranciscoMoviesApp
+
+Check out the running application here: http://sf-movies.s3-website.eu-central-1.amazonaws.com/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.1.
 
